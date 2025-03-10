@@ -38,4 +38,4 @@ jobs:
          uses: docker/build-push-action@v6
          with:
            push: true
-           tags: ${{ secrets.DOCKER_USER_NAME }}/hello-image, ${{ steps.meta.outputs.tags }}
+           tags: ${{ secrets.DOCKER_USER_NAME }}/hello-image:latest, ${{ steps.meta.outputs.tags }}
