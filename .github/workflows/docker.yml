@@ -31,11 +31,10 @@ jobs:
           images: ${{ secrets.DOCKER_USER_NAME }}/hello-image
           tags: |
             type=ref,event=branch
-            type=sha
             type=ref,event=tag
         
       -  name: Build and push
          uses: docker/build-push-action@v6
          with:
            push: true
-           tags: ${{ secrets.DOCKER_USER_NAME }}/hello-image, ${{ steps.meta.outputs.tags }}
+           tags: ${{ steps.meta.outputs.tags }}
