@@ -1,4 +1,4 @@
-﻿name: Publish Docker Image
+name: Publish Docker Image
 
 on:
   push:
@@ -11,6 +11,15 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4.2.2
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+         images: ${{ secrets.DOCKER_USER_NAME }}/hello-world
+         tags: |
+           type=ref,event=branch
+           type=raw,value=latest
 
       - name: Log into Docker Hub
         uses: docker/login-action@v3
@@ -28,4 +37,4 @@ jobs:
          uses: docker/build-push-action@v6
          with:
            push: true
-           tags: ${{ secrets.DOCKER_USER_NAME }}/hello-world:latest
+           tags: ${{ steps.meta.outputs.tags }}
