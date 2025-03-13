@@ -1,1 +1,1 @@
-﻿Console.WriteLine("Hello, World! My name is Andrii!");
+﻿Console.WriteLine("Hello, World! My name is Andrii!")
